@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Películas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        #encabezado_1 {
+            color: white;
+            text-align: center;
+            font-family: sans-serif;
+            font-weight: 900;
+            font-size: 50px;
+            padding: 30px;
+                       
+        }
+        .busqueda {
+            text-align: center;
+            
+        }
+        
+        body {
+            background-color: black;
+        }
+        
+        .imgWrapper4 {
+            font-size: 0;
+            text-align: center;
+        }
+        .imgWrapper4 .imgResponsiva {
+            display: inline-block;
+            font-size: inherit;
+        }
+        .imgWrapper4 .imgResponsiva {width: 25%; max-width: 345px;}
+        
+        .imgResponsiva img {
+            height: auto;
+            width: 100%;
+        }
+           
+        </style>
+        
+        <h1 id="encabezado_1">PELÍCULAS</h1>
+        
+    </head>
+    <body>
+        <form action = "OMBDservlet" method = "POST">
+            <div class = "busqueda"> 
+                <input type="text" placeholder="Ingrese película" name="pelicula" id="pelicula"/>
+                <input type="submit" name="buscar" id="buscar" value="Buscar"/>
+            <div/>
+            
+            <div class = "imgWrapper4">
+                <div class="imgResponsiva">
+                    <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg"/>
+                </div>
+                <div class="imgResponsiva">
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTU0NzQzODUzNl5BMl5BanBnXkFtZTgwMjc5NTYxMTE@._V1_SX300.jpg"/>
+                </div>
+                <div class="imgResponsiva">
+                    <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"/>
+                </div>
+                <div class="imgResponsiva">
+                    <img src="https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"/>
+                </div>
+            </div>
+
+            
+        </form>
+    </body>
+</html>
