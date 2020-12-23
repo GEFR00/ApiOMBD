@@ -1,2 +1,2 @@
-# ApiOMBD
-Se utiliza la Api OMBD para realizar busqueda de una película según el título. 
+# ApiOMDb
+Se utiliza la Api OMDb para realizar busqueda de una película según el título. 
