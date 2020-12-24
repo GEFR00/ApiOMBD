@@ -11,14 +11,18 @@ import javax.json.*;
 /**
     * @author gabriela_figueroa
  */
-public class OmbdServClient {
     //                                                  Uso de Api OMBD
-    public OmbdServClient(){};
+public class OmbdServClient {
+
+    //Constructor
+    public OmbdServClient(){}; 
     
     /*
-        entregaUrl recibe input realizada por el cliente, el cual es reemplazado en la url para realizar la busqueda de la pelicula
+        entregaUrl recibe input realizada por el usuario, el cual es reemplazado en la url para realizar la busqueda de la pelicula
                                 **Solo hace busqueda con el titulo de la pelicula -> s **
         En la Api OMBD la s recibe como parametro el titulo. 
+        
+        El input es el realizado por el usuario al buscar una película, se entrega en el servlet. 
     */
     
     public String entregaUrl(String input) {
@@ -49,7 +53,6 @@ public class OmbdServClient {
             if (objeto.size() > 0) {
                 String titulo_pelicula = objeto.getJsonArray("Search").getJsonObject(i).get("Title").toString();
                 pelicula.add(i, titulo_pelicula.toLowerCase());
-                //System.out.println("Agregando: "+objeto.getJsonArray("Search").getJsonObject(i).get("Title"));
             }
             else {
                 System.out.println("Error. ");
@@ -60,6 +63,11 @@ public class OmbdServClient {
 
     }
     
+    /*
+        entregaPoster recibe input del usuario para poder ser reemplazado en la url, este busca
+        el poster de la película requerida. 
+        **Se utilizará como relacion 1-1 junto a buscarPeliculaTitulo para poder buscar de manera correcta. 
+    */
     public LinkedList<String> entregaPoster(String input) throws MalformedURLException, IOException {
         LinkedList<String> poster_pelicula = new LinkedList<String>();
         OmbdServClient ombd = new OmbdServClient();
@@ -72,7 +80,7 @@ public class OmbdServClient {
         JsonReader reader = Json.createReader(entrada);
         JsonObject objeto = reader.readObject();
         
-        //Guardamos el titulo de la pelicula en una lista enlazada
+        //Guardamos el poster de la pelicula en una lista enlazada
         for (int i = 0; objeto.getJsonArray("Search").size() > i; i++) {
             if (objeto.size() > 0) {
                 String poster = objeto.getJsonArray("Search").getJsonObject(i).get("Poster").toString();
@@ -87,7 +95,9 @@ public class OmbdServClient {
         return poster_pelicula;
         
     }
-    
+    /*
+        Entrega el año de la pelicula. 
+    */
     public LinkedList<String> entregaYear(String input) throws MalformedURLException, IOException {
         LinkedList<String> year_pelicula = new LinkedList<String>();
         OmbdServClient ombd = new OmbdServClient();
@@ -115,13 +125,18 @@ public class OmbdServClient {
         return year_pelicula;
     }
     
+    /*
+        entregaIndexPelicula recibe una lista enlazada con las peliculas, y el input, con este se determina si existe la pelicula o no,
+        y para ello la pelicula debe de estar en la lista. 
+        Retorna el indice si lo encuentra, y si no entrega un -1. 
+    */
     public int entregaIndexPelicula(LinkedList<String> pelicula, String peliInput) throws IOException {
         OmbdServClient ombd = new OmbdServClient();
         int index = 0;
         char simbolo = '"';
         
         peliInput = peliInput.toLowerCase();
-        peliInput = simbolo+peliInput+simbolo; // ejemplo: batman -> "batman"
+        peliInput = simbolo+peliInput+simbolo; // ejemplo: batman -> "batman" (así se guarda en la lista)
 
         if(ombd.buscarPeliculaTitulo(peliInput).contains(peliInput) == true) {
             index = ombd.buscarPeliculaTitulo(peliInput).indexOf(peliInput);
@@ -133,6 +148,11 @@ public class OmbdServClient {
         return index;
         
     }
+    
+    /*
+        existePelicula nos indica si se encuentra la pelicula en la biblioteca de la Api. 
+        Retorna true o false. 
+    */
     
     public boolean existePelicula(String input_user) throws IOException {
         OmbdServClient ombd = new OmbdServClient();
@@ -152,6 +172,8 @@ public class OmbdServClient {
         
         return existe;
     }
+    
+                 //Main de prueba para ver si los métodos creados funcionan de manera correcta antes de implementar. 
     
     public static void main(String[] args) throws MalformedURLException, IOException {
         Scanner lector = new Scanner(System.in);

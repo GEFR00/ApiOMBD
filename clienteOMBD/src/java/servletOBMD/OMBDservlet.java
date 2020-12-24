@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+    * @author gabriela_figueroa
+ */
+
 public class OMBDservlet extends HttpServlet {
 
     /**
@@ -24,7 +28,7 @@ public class OMBDservlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         OmbdServClient ombd = new OmbdServClient();
-        String ingreso = request.getParameter("pelicula");
+        String ingreso = request.getParameter("pelicula"); 
         ingreso = ingreso.toLowerCase();
         
         String accion, ref_imagen = null, año_pelicula = null;
